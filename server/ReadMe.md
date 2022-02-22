@@ -1,15 +1,40 @@
-### install steps
-#### npm i express --save
-#### npm install graphql express-graphql --save
-#### npm install nodemon --save
-#### npm install mongoose --save
-
+### run server
+#### $ npm start
 
 ### Kill server note 
-#### lsof -i:8080
-#### kill pid
+#### $ lsof -i:8080
+#### $ kill pid
 
-### write mutation ..
+## Graphql Notes
+### query to find single book
+```javascript
+{
+  book(id:"62156631440b49d3adf63e64"){
+    id
+    name,
+    author{
+      id,
+      name
+    }
+  }
+}
+```
+
+### query to get all books with author relation
+```javascript
+{
+  books {
+    id
+    name,
+    author{
+      id,
+      name
+    }
+  }
+}
+```
+
+### mutation to add author ..
 ```javascript
 mutation {
   addAuthor(name:"Refaat",age:26){
