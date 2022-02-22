@@ -7,3 +7,10 @@ HINTS
 
 - lsof -i:8080
 - kill pid
+
+//write mutation ..
+mutation {
+  addAuthor(name:"Refaat",age:26){
+    name
+  }
+}
