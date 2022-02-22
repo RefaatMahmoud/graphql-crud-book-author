@@ -1,16 +1,19 @@
-\*\* install
-[1] npm i express --save
-[2] npm install graphql express-graphql --save
-[2] npm install nodemon --save
+### install steps
+## npm i express --save
+## npm install graphql express-graphql --save
+## npm install nodemon --save
+## npm install mongoose --save
 
-HINTS
 
-- lsof -i:8080
-- kill pid
+### Kill server note 
+## lsof -i:8080
+## kill pid
 
-//write mutation ..
+### write mutation ..
+```json
 mutation {
   addAuthor(name:"Refaat",age:26){
     name
   }
 }
+```
