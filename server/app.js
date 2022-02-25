@@ -4,7 +4,9 @@ const { default: mongoose } = require("mongoose");
 const databaseConfig = require("./config/database.config");
 const schema = require("./schema/RootSchema");
 const app = new express();
+var cors = require("cors");
 
+app.use(cors());
 app.use(
   "/graphql",
   graphqlHTTP({

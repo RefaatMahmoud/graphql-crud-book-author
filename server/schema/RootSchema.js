@@ -110,12 +110,48 @@ const Mutation = new GraphQLObjectType({
         authorId: { type: new GraphQLNonNull(GraphQLID) },
       },
       resolve(parent, args) {
+        if (args.name == "") throw new Error("name field is required !");
         let book = new Book({
           name: args.name,
           genre: args.genre,
           authorId: args.authorId,
         });
         return book.save();
+      },
+    },
+    updateBook: {
+      type: BookType,
+      args: {
+        id: { type: new GraphQLNonNull(GraphQLID) },
+        name: { type: new GraphQLNonNull(GraphQLString) },
+        genre: { type: new GraphQLNonNull(GraphQLString) },
+        authorId: { type: new GraphQLNonNull(GraphQLID) },
+      },
+      resolve(parent, args) {
+        if (args.id == "") throw new Error("id field is required !");
+        let bookUpdatetd = Book.updateOne(
+          { _id: args.id },
+          {
+            name: args.name,
+            genre: args.genre,
+            authorId: args.authorId,
+          },
+          (err, data) => {
+            if (err) return err;
+            return data;
+          }
+        );
+        if (bookUpdatetd) return Book.findById(args.id);
+      },
+    },
+    deleteBook: {
+      type: BookType,
+      args: {
+        id: { type: new GraphQLNonNull(GraphQLID) },
+      },
+      resolve(parent, args) {
+        if (args.id == "") throw new Error("id field is required !");
+        return Book.deleteOne({ _id: args.id });
       },
     },
   },
